@@ -117,16 +117,20 @@
                                 <div class="flex justify-center items-center gap-2">
                                     <a href="{{ route('dashboard.minute.printPDF', $minute->slug) }}" target="_BLANK"
                                         class="text-blue-600 hover:underline text-sm">Cetak</a>
-                                    <a href="{{ route('dashboard.minute.edit', $minute->slug) }}"
-                                        class="text-yellow-600 hover:underline text-sm">Edit</a>
-                                    <form action="{{ route('dashboard.minute.destroy', $minute->slug) }}"
-                                        method="POST" class="inline"
-                                        onsubmit="return confirm('Yakin ingin menghapus?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button
-                                            class="text-red-600 hover:underline text-sm cursor-pointer">Hapus</button>
-                                    </form>
+                                    @can('update-minute', $minute)
+                                        <a href="{{ route('dashboard.minute.edit', $minute->slug) }}"
+                                            class="text-yellow-600 hover:underline text-sm">Edit</a>
+                                    @endcan
+                                    @can('delete-minute', $minute)
+                                        <form action="{{ route('dashboard.minute.destroy', $minute->slug) }}"
+                                            method="POST" class="inline"
+                                            onsubmit="return confirm('Yakin ingin menghapus?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button
+                                                class="text-red-600 hover:underline text-sm cursor-pointer">Hapus</button>
+                                        </form>
+                                    @endcan
                                 </div>
                             </td>
                         </tr>

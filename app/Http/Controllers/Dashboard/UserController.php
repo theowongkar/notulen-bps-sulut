@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,6 +13,11 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
+        // Cek akses
+        if (Gate::denies('manage-user')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         // Validasi Search Form
         $validated = $request->validate([
             'start_date' => 'nullable|date',
@@ -45,11 +51,21 @@ class UserController extends Controller
 
     public function create()
     {
+        // Cek akses
+        if (Gate::denies('manage-user')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         return view('dashboard.users.create');
     }
 
     public function store(Request $request)
     {
+        // Cek akses
+        if (Gate::denies('manage-user')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         // Validasi Input
         $validated = $request->validate([
             'name' => 'required|string|max:100',
@@ -78,6 +94,11 @@ class UserController extends Controller
 
     public function edit(string $id)
     {
+        // Cek akses
+        if (Gate::denies('manage-user')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         // Ambil data pengguna berdasarkan id
         $user = User::findOrFail($id);
 
@@ -86,6 +107,11 @@ class UserController extends Controller
 
     public function update(Request $request, string $id)
     {
+        // Cek akses
+        if (Gate::denies('manage-user')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         // Ambil data pengguna berdasarkan id
         $user = User::findOrFail($id);
 
@@ -124,6 +150,11 @@ class UserController extends Controller
 
     public function destroy(string $id)
     {
+        // Cek akses
+        if (Gate::denies('manage-user')) {
+            abort(403, 'Anda tidak memiliki akses.');
+        }
+
         // Ambil data pengguna berdasarkan id
         $user = User::findOrFail($id);
 

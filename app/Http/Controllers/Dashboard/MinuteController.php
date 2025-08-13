@@ -7,6 +7,7 @@ use App\Models\Minute;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class MinuteController extends Controller
@@ -96,6 +97,9 @@ class MinuteController extends Controller
         // Ambil notulen berdasarkan slug
         $minute = Minute::with('user')->where('slug', $slug)->firstOrFail();
 
+        // Cek Izin
+        Gate::authorize('update-minute', $minute);
+
         // Ambil Data Pengguna
         $users = User::all();
 
@@ -106,6 +110,9 @@ class MinuteController extends Controller
     {
         // Ambil notulen berdasarkan slug
         $minute = Minute::where('slug', $slug)->firstOrFail();
+
+        // Cek Izin
+        Gate::authorize('update-minute', $minute);
 
         // Validasi Input
         $validated = $request->validate([
@@ -138,6 +145,9 @@ class MinuteController extends Controller
     {
         // Ambil notulen berdasarkan slug
         $minute = Minute::where('slug', $slug)->firstOrFail();
+
+        // Cek Izin
+        Gate::authorize('delete-minute', $minute);
 
         // Hapus file evidence jika ada
         if ($minute->evidence && Storage::disk('public')->exists($minute->evidence)) {
