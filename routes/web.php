@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\MinuteController;
+use App\Http\Controllers\Dashboard\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -29,4 +30,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/notulen/{slug}/ubah', [MinuteController::class, 'edit'])->name('dashboard.minute.edit');
     Route::put('/dashboard/notulen/{slug}/ubah', [MinuteController::class, 'update'])->name('dashboard.minute.update');
     Route::delete('/dashboard/notulen/{slug}/hapus', [MinuteController::class, 'destroy'])->name('dashboard.minute.destroy');
+
+    // Notulen
+    Route::get('/dashboard/pengguna', [UserController::class, 'index'])->name('dashboard.user.index');
+    Route::get('/dashboard/pengguna/tambah', [UserController::class, 'create'])->name('dashboard.user.create');
+    Route::post('/dashboard/pengguna/tambah', [UserController::class, 'store'])->name('dashboard.user.store');
+    Route::get('/dashboard/pengguna/{id}/ubah', [UserController::class, 'edit'])->name('dashboard.user.edit');
+    Route::put('/dashboard/pengguna/{id}/ubah', [UserController::class, 'update'])->name('dashboard.user.update');
+    Route::delete('/dashboard/pengguna/{id}/hapus', [UserController::class, 'destroy'])->name('dashboard.user.destroy');
 });

@@ -71,8 +71,8 @@
         {{-- Pengguna --}}
         <div class="space-y-2">
             <h1 class="mb-1 text-xs text-gray-400 font-bold uppercase">Pengguna</h1>
-            <a href="#"
-                class="flex items-center space-x-3 px-4 py-2 text-gray-200 text-sm font-semibold rounded-md hover:bg-white/10 {{ Route::is('#') ? 'bg-white/10 text-white' : '' }}">
+            <a href="{{ route('dashboard.user.index') }}"
+                class="flex items-center space-x-3 px-4 py-2 text-gray-200 text-sm font-semibold rounded-md hover:bg-white/10 {{ Route::is(['dashboard.user.index', 'dashboard.user.edit']) ? 'bg-white/10 text-white' : '' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                     class="bi bi-person-vcard" viewBox="0 0 16 16">
                     <path
@@ -82,8 +82,8 @@
                 </svg>
                 <span>List Pengguna</span>
             </a>
-            <a href="#"
-                class="flex items-center space-x-3 px-4 py-2 text-gray-200 text-sm font-semibold rounded-md hover:bg-white/10 {{ Route::is('#') ? 'bg-white/10 text-white' : '' }}">
+            <a href="{{ route('dashboard.user.create') }}"
+                class="flex items-center space-x-3 px-4 py-2 text-gray-200 text-sm font-semibold rounded-md hover:bg-white/10 {{ Route::is('dashboard.user.create') ? 'bg-white/10 text-white' : '' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                     class="bi bi-person-add" viewBox="0 0 16 16">
                     <path
