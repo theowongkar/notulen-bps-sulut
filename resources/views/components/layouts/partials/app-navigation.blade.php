@@ -40,8 +40,8 @@
         {{-- Notulen --}}
         <div class="space-y-2">
             <h1 class="mb-1 text-xs text-gray-400 font-bold uppercase">Notulen</h1>
-            <a href="#"
-                class="flex items-center space-x-3 px-4 py-2 text-gray-200 text-sm font-semibold rounded-md hover:bg-white/10 {{ Route::is('#') ? 'bg-white/10 text-white' : '' }}">
+            <a href="{{ route('dashboard.minute.index') }}"
+                class="flex items-center space-x-3 px-4 py-2 text-gray-200 text-sm font-semibold rounded-md hover:bg-white/10 {{ Route::is(['dashboard.minute.index', 'dashboard.minute.edit']) ? 'bg-white/10 text-white' : '' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                     class="bi bi-journal-richtext" viewBox="0 0 16 16">
                     <path
@@ -53,8 +53,8 @@
                 </svg>
                 <span>List Notulen</span>
             </a>
-            <a href="#"
-                class="flex items-center space-x-3 px-4 py-2 text-gray-200 text-sm font-semibold rounded-md hover:bg-white/10 {{ Route::is('#') ? 'bg-white/10 text-white' : '' }}">
+            <a href="{{ route('dashboard.minute.create') }}"
+                class="flex items-center space-x-3 px-4 py-2 text-gray-200 text-sm font-semibold rounded-md hover:bg-white/10 {{ Route::is('dashboard.minute.create') ? 'bg-white/10 text-white' : '' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                     class="bi bi-clipboard-plus" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"

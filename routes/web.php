@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\MinuteController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -19,4 +20,13 @@ Route::middleware('auth')->group(function () {
 
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Notulen
+    Route::get('/dashboard/notulen', [MinuteController::class, 'index'])->name('dashboard.minute.index');
+    Route::get('/dashboard/notulen/tambah', [MinuteController::class, 'create'])->name('dashboard.minute.create');
+    Route::post('/dashboard/notulen/tambah', [MinuteController::class, 'store'])->name('dashboard.minute.store');
+    Route::get('/dashboard/notulen/{slug}/cetak', [MinuteController::class, 'printPDF'])->name('dashboard.minute.printPDF');
+    Route::get('/dashboard/notulen/{slug}/ubah', [MinuteController::class, 'edit'])->name('dashboard.minute.edit');
+    Route::put('/dashboard/notulen/{slug}/ubah', [MinuteController::class, 'update'])->name('dashboard.minute.update');
+    Route::delete('/dashboard/notulen/{slug}/hapus', [MinuteController::class, 'destroy'])->name('dashboard.minute.destroy');
 });

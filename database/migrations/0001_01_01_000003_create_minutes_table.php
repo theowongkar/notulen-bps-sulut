@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('followed_up_by')->constrained('users')->onDelete('cascade');
             $table->text('problem');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->text('solution');
             $table->text('follow_up_plan');
             $table->date('follow_up_limits');
